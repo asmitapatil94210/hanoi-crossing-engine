@@ -1,16 +1,10 @@
-from models import Action, GameState, Move, Player
+from engine import apply_move, check_win, get_valid_actions
+import random
+from models import  GameState, Player
 
 # Read the input from user
 n = int(input())
 turn_order = [Player(p) for p in input().split()]
-
-moves = []
-for i in range(len(turn_order)):
-    parts = input().split()
-
-    action = Action(parts[0].capitalize())
-    pole = parts[1] if len(parts) > 1 else None
-    moves.append(Move(action, pole))
 
 poles = dict()
 poles['1a'] = []
@@ -27,3 +21,23 @@ hands = dict()
 hands[Player.A] = None
 hands[Player.B] = None
 game = GameState(n, poles, hands)
+
+for i in range(len(turn_order)):
+    player = turn_order[i]
+    valid_actions = get_valid_actions(game, player)
+    move = random.choice(valid_actions)
+    apply_move(game, player, move)
+
+    if check_win(game, player):
+        print(f"Player {player.value} wins!")
+        break
+
+    #print final state of hands and poles
+    print("Hands:")
+    for player, hand in hands.items():
+        print(f"Player {player.value}: {hand}")
+
+    print("Poles:")
+    for pole, disks in poles.items():
+        print(f"{pole}: {disks}")
+    print()
