@@ -30,17 +30,17 @@ def check_win(game, player):
     if game.poles["2"]:
         return False
 
-    if player.value == Player.A:
+    if player == Player.A:
         if game.poles["1a"]:
             return False
 
-        if game.poles["3a"] != list(range(2 * game.N - 1, 0, -2)):
+        if game.poles["3a"] != list(range(2 * game.n - 1, 0, -2)):
             return False
         
-    elif player.value == Player.B:
+    elif player == Player.B:
         if game.poles["1b"]:
             return False
-        if game.poles["3b"] != list(range(2 * game.N, 0, -2)):
+        if game.poles["3b"] != list(range(2 * game.n, 0, -2)):
             return False
 
     return True

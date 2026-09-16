@@ -32,12 +32,12 @@ for i in range(len(turn_order)):
         print(f"Player {player.value} wins!")
         break
 
-    #print final state of hands and poles
-    print("Hands:")
-    for player, hand in hands.items():
-        print(f"Player {player.value}: {hand}")
+#print final state of hands and poles
+print("Hands:")
+for player, hand in hands.items():
+    print(f"Player {player.value}: {hand}")
 
-    print("Poles:")
-    for pole, disks in poles.items():
-        print(f"{pole}: {disks}")
-    print()
+print("Poles:")
+for pole, disks in poles.items():
+    print(f"{pole}: {disks}")
+print()
