@@ -1,5 +1,5 @@
 from models import Action, GameState, Move, Player
-from engine import apply_move
+from engine import apply_move, check_win
 
 # Read the input from user
 n = int(input())
@@ -33,3 +33,7 @@ for i in range(len(turn_order)):
     player = turn_order[i]
     move = moves[i]
     apply_move(game, player, move)
+
+    if check_win(game, player):
+        print(f"Player {player.value} wins!")
+        break
